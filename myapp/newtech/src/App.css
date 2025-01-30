@@ -1,0 +1,5 @@
+body{
+    display: flex;
+    border: 8px solid black;
+    justify-content: flex-start
+}
