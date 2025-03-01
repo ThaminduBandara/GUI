@@ -1,17 +1,151 @@
 .nvgBar{
+    background-color: rgb(33, 14, 118);
+    margin: -8px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    width: 100%;
-    height: 100px;
+
+   
+     
+}
+
+
+.left{
+    /* border: 2px solid blue; */
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+
+
+.right{
+    /* border: 2px solid red; */
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end; 
+    align-items: center;
     
     
 }
 
-.item{
+
+
+
+
+.item-1{
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: blue; */
     flex: 1;
-    background-color: rgb(5, 5, 64);
-    text-align: center;
-    padding: 20px;
+    height: 50px;
+    font-size: 14px
+   
+}
+.name{
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-style: italic;
+    font-weight: bold;
+    color: white;
+    height: 50px;
+    width: 70px;
+    flex-grow: 1;
+    
+    
+    
+    
+}
+
+
+.search{
+    /* border: 3px solid black; */
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    gap: 5px;
+    width:40% ;
+    
+   
+}
+
+.other{
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    width: 15%;
+    
+   
+}
+
+.btn{
+background-color: rgb(48, 48, 184);
+border: none;
+border-radius: 7px;
+height: 30px;
+width: 100%;
+
+
+}
+
+.type-box{
+    border: none;
+    border-radius: 7px;
+    height: 25px;
+    width: 80%;
+    
+       
+}
+
+
+
+.item-2{
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: blue; */
+    flex-grow: 1;
+    height: 50px;
+    width: 100%;
+   
+}
+
+.item-3{
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    /* background-color: blue; */
+    flex-grow: 1;
+    height: 50px;
+    width: 80%;
+    
+   
+}
+
+.item-4{
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: blue; */
+    flex-grow: 1;
+    height: 50px;
+    width: 15%;
+    
+   
 }

@@ -1,0 +1,116 @@
+
+.full{
+    margin-top: 70px;
+    margin-left: 500px;
+    background-color: blue;
+    border-radius: 7px;
+    width: 20%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.middle{
+
+    background-color: rgb(129, 119, 138);
+    border-radius: 7px;
+    height: 95%;
+    width: 93%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+
+}
+
+.image{
+
+    background-color: blue;
+    background-image: url(Assets/2.jpg);
+    width: 100%;
+    height: 40%;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.mid-para{
+
+    background-color: bisque;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 20%;
+
+}
+
+.name{
+
+    color: black;
+    width: 100%;
+
+}
+
+.price{
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.btns{
+    background-color: rgb(30, 19, 148);
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    width: 100%;
+    height: 30%;
+
+
+}
+
+.stock{
+    background-color: aquamarine;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    width: 100%;
+    height: 30%;
+}
+
+.buy{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 35%;
+}
+
+.add{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 35%;
+}
+
+.btn-1{
+    width: 100%;
+    height: 100%;
+}
+
+.btn-2{
+    
+    width: 100%;
+    height: 100%;
+}
+
