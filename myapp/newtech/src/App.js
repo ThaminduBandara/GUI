@@ -1,7 +1,7 @@
-import logo from './logo.svg';
-import './App.css';
-import NvgBar from './components/NvgBar';
-import Home from './Pages/Home';
+// import logo from './logo.svg';
+// import './App.css';
+// import NvgBar from './components/NvgBar';
+import Home from './Pages/home/Home';
 
 
 function App() {

@@ -8,7 +8,7 @@ export default function NvgBar() {
 
 
         <div className='left'>
-            <div className='name'>NEW TECH</div>
+            <div className='name-1'>NEW TECH</div>
             <div className='item-1'>HOME</div>
             <div className='item-1'>CATEGORIES</div>
             <div className='item-1'>REGISTER</div>

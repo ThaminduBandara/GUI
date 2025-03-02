@@ -4,7 +4,7 @@ import './footerr.css'
 export default function Footerr() {
   return (
 
-    <div className='full'>
+    <div className='full-1'>
     <div className='footerr'>
         <div className='first-para'>
             <div className='about'>ABOUT US</div>

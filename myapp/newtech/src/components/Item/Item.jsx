@@ -6,7 +6,10 @@ export default function Item() {
     <div className='full'>
         <div className='middle'>
 
-            <div className='image'>
+            <div className='frame'>
+              <div className='image'>
+
+              </div>
 
             </div>
 
@@ -14,7 +17,7 @@ export default function Item() {
                 <div className='name'>Mac Book</div>
 
                
-                <div className='price'>500000.00</div>
+                <div className='price'>Rs.500000.00</div>
 
                 
             </div>
