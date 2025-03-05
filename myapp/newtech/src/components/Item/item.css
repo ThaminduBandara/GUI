@@ -33,17 +33,20 @@
 
     
     
-    background-image: url(../Assets/2.jpg);
+    /* background-image: url(../Assets/2.jpg); */
     border-radius: 7px;
     width: 93%;
     height: 93%;
-    background-size: cover;
     /* object-fit: cover; */
     flex-shrink: 1;
     /* display: flex;
     justify-content: space-around;
     align-items: space-around; */
 
+}
+
+.img-t{
+    background-size: cover;
 }
 
 .frame{
@@ -158,4 +161,7 @@
     height: 100%;
     border-radius: 7px;
 }
+
+
+
 

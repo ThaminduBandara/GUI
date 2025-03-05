@@ -1,0 +1,34 @@
+.homemid{
+    /* background-color: #252525; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    height: 100%;
+    margin-top:  20px;
+    width: 100%;
+
+}
+
+
+
+.homemid h1{
+    color: #b1b4cb;
+    font-size: 30px;
+    font-weight: 600;
+
+}
+
+
+.homemid hr{
+    width: 200px;
+    height: 6px;
+    border-radius: 10px;
+    background: #b1b4cb;
+
+}
+.homemid-item{
+    margin-top: 50px;
+    display: flex;
+    gap: 30px;
+}
