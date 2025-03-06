@@ -1,0 +1,13 @@
+.product-form-full{
+    background-color: rgb(48, 48, 184);
+    height: 400px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: row;
+}
+
+.product-form-full h2{
+    font-size: 31px;
+    color: rgb(211, 211, 224);
+}

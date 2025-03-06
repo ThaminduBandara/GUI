@@ -1,13 +1,16 @@
 import React, { useRef } from "react";
+// import ProductList from './components/ProductLists';
+import ProductForm from './components/ProductForm';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
 import NvgBar from './components/naveBar/NvgBar';
 import Footerr from './components/footer/Footerr'
-// import Home from './Pages/home/Home';
+import Home from './Pages/home/Home';
 import Login from './Pages/login/Login';
 import SignUp from './Pages/signUp/SignUp';
 import SingleProduct from "./Pages/singleProduct/SingleProduct";
-// import SingleProduct from './Pages/singleProduct/SingleProduct';
+// import SingleProduct from "./Pages/singleProduct/SingleProduct";
+
 
 
 
@@ -26,9 +29,11 @@ function App() {
       
 
       <Routes>
-          <Route path="/" element={<SingleProduct/>} />
+          <Route path="/" element={<Home/>} />
           <Route path="/Login" element={<Login/>} />
           <Route path="/SignUp" element={<SignUp/>} />
+          <Route path="/singleProduct" element={<SingleProduct />} />
+
         </Routes>
      
      

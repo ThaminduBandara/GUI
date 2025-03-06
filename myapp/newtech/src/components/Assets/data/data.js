@@ -10,6 +10,7 @@ let data_product = [
         image:p1_img,
         new_price:'5,550',
         stock:'in stock',
+        quantity: '5',
 
 
     },
@@ -19,6 +20,7 @@ let data_product = [
         image:p2_img,
         new_price:'5,920',
         stock:'in stock',
+        quantity: '5',
 
     },
    
@@ -28,6 +30,7 @@ let data_product = [
         image :p3_img,
         new_price: '13,500',
         stock: 'in stock',
+        quantity: '5',
     },
    
 ]
