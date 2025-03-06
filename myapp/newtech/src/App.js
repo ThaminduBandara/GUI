@@ -6,7 +6,8 @@ import Footerr from './components/footer/Footerr'
 // import Home from './Pages/home/Home';
 import Login from './Pages/login/Login';
 import SignUp from './Pages/signUp/SignUp';
-import SingleProduct from './Pages/singleProduct/SingleProduct';
+import SingleProduct from "./Pages/singleProduct/SingleProduct";
+// import SingleProduct from './Pages/singleProduct/SingleProduct';
 
 
 
