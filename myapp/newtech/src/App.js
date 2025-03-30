@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-// import ProductList from './components/ProductLists';
+import ProductList from './components/ProductLists';
 import ProductForm from './components/ProductForm';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
@@ -33,6 +33,8 @@ function App() {
           <Route path="/Login" element={<Login/>} />
           <Route path="/SignUp" element={<SignUp/>} />
           <Route path="/singleProduct" element={<SingleProduct />} />
+          <Route path="/ProductForm" element={<ProductForm/>} />
+          <Route path="/ProductLists" element={<ProductList/>} />
 
         </Routes>
      

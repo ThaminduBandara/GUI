@@ -11,3 +11,16 @@
     font-size: 31px;
     color: rgb(211, 211, 224);
 }
+
+
+
+
+.product-form-container {
+    background-color: rgb(48, 48, 184);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+

@@ -1,53 +1,3 @@
-// import React from 'react'
-// import './nvgBar.css'
-
-// export default function NvgBar() {
-//   return (
-    
-//       <div className="nvgBar">
-
-
-//         <div className='left'>
-//             <div className='name-1'>NEW TECH</div>
-//             <div className='item-1'>HOME</div>
-//             <div className='item-1'>CATEGORIES</div>
-//             <div className='item-1'>REGISTER</div>
-//             <div className='item-1'>CONTACT US</div>
-            
-//         </div>
-
-
-//         <div className='right'>
-
-
-
-//           <div className='search'>
-//             <div className='item-3'>
-//               <input className='type-box'  type="text" />
-//             </div>
-//             <div className='item-4'>
-//               <button className='btn'>SEARCH</button>
-//             </div>
-            
-//           </div>
-
-//             <div className='other'>
-//               <div className='item-2'>ADVANCED</div>
-//               <div className='item-2'>LOG IN</div>
-//             </div>
-            
-            
-//         </div>
-        
-        
-        
-//       </div>
-    
-//   )
-// }
-
-
-
 
 
 import React, { useState } from 'react';
@@ -57,6 +7,8 @@ import { Link } from 'react-router-dom';
 export default function NvgBar({ bottomRef }) {
   const [searchText, setSearchText] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDropdownOpen2, setIsDropdownOpen2] = useState(false);
+
 
   const handleSearchChange = (e) => {
     setSearchText(e.target.value);
@@ -80,6 +32,10 @@ export default function NvgBar({ bottomRef }) {
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const toggleDropdown2 = () => {
+    setIsDropdownOpen2(!isDropdownOpen2);
   };
 
   return (
@@ -126,7 +82,24 @@ export default function NvgBar({ bottomRef }) {
         </div>
 
         <div className="other">
-          <div className="item-2" onClick={() => handleNavigation('ADVANCED')}>ADVANCED</div>
+          <div className="item-2" onClick={toggleDropdown2}>ADVANCED
+
+          {isDropdownOpen2 && (
+              <ul className="dropdown-menu2">
+                <Link to="/ProductForm" className='add-item'>
+                <li>Add Items</li>
+                </Link>
+                <Link to="/ProductLists" className='add-item'>
+                <li>Product List</li>
+                </Link>
+                
+                
+              </ul>
+            )}
+
+
+
+          </div>
           
           <Link className="item-2" to="/Login" ><div  onClick={() => handleNavigation('LOG IN')}>LOGIN</div></Link>
           
