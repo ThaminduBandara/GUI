@@ -1,10 +1,42 @@
-
 import React, { useState } from 'react';
 import axios from 'axios';
-import './productform.css';
+import {
+    Box,
+    TextField,
+    Button,
+    Typography,
+    Paper,
+    Grid,
+    Container,
+    IconButton,
+    Alert,
+    Snackbar
+} from '@mui/material';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import SearchIcon from '@mui/icons-material/Search';
+import { styled } from '@mui/material/styles';
+//import './productform.css';
+
+// Styled components
+const VisuallyHiddenInput = styled('input')`
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  white-space: nowrap;
+  width: 1px;
+`;
+
+const StyledPaper = styled(Paper)(({ theme }) => ({
+    padding: theme.spacing(3),
+    margin: theme.spacing(2, 0),
+    borderRadius: '12px',
+}));
 
 const ProductForm = () => {
-    
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
@@ -12,7 +44,6 @@ const ProductForm = () => {
     const [stock, setStock] = useState('');
     const [image, setImage] = useState(null);
 
-   
     const [updateId, setUpdateId] = useState('');
     const [updateName, setUpdateName] = useState('');
     const [updateDescription, setUpdateDescription] = useState('');
@@ -21,10 +52,20 @@ const ProductForm = () => {
     const [updateStock, setUpdateStock] = useState('');
     const [updateImage, setUpdateImage] = useState(null);
 
-  
     const [deleteId, setDeleteId] = useState('');
 
-    
+    const [snackbar, setSnackbar] = useState({
+        open: false,
+        message: '',
+        severity: 'success'
+    });
+
+    // Handle snackbar close
+    const handleSnackbarClose = () => {
+        setSnackbar({ ...snackbar, open: false });
+    };
+
+    // Modified handlers with snackbar feedback
     const handleAddProduct = async (e) => {
         e.preventDefault();
         const formData = new FormData();
@@ -36,23 +77,41 @@ const ProductForm = () => {
         if (image) formData.append('image', image);
 
         try {
-            await axios.post('http://localhost:5000/products', formData, {
+            await axios.post('http://localhost:5001/products', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
-            alert('Product added successfully');
+            setSnackbar({
+                open: true,
+                message: 'Product added successfully!',
+                severity: 'success'
+            });
+            // Clear form
+            setName('');
+            setDescription('');
+            setPrice('');
+            setCategory('');
+            setStock('');
+            setImage(null);
         } catch (error) {
-            console.error('Error adding product:', error);
+            setSnackbar({
+                open: true,
+                message: 'Error adding product',
+                severity: 'error'
+            });
         }
     };
 
-    // Fetch product details by ID
     const fetchProductDetails = async () => {
         if (!updateId) {
-            alert("Please enter a product ID.");
+            setSnackbar({
+                open: true,
+                message: 'Please enter a product ID.',
+                severity: 'warning'
+            });
             return;
         }
         try {
-            const response = await axios.get(`http://localhost:5000/products/${updateId}`);
+            const response = await axios.get(`http://localhost:5001/products/${updateId}`);
             const product = response.data;
 
             setUpdateName(product.name);
@@ -61,12 +120,14 @@ const ProductForm = () => {
             setUpdateCategory(product.category);
             setUpdateStock(product.stock);
         } catch (error) {
-            console.error('Error fetching product:', error);
-            alert("Product not found!");
+            setSnackbar({
+                open: true,
+                message: 'Product not found!',
+                severity: 'error'
+            });
         }
     };
 
-  
     const handleUpdateProduct = async (e) => {
         e.preventDefault();
         const formData = new FormData();
@@ -78,215 +139,276 @@ const ProductForm = () => {
         if (updateImage) formData.append('image', updateImage);
 
         try {
-            await axios.put(`http://localhost:5000/products/${updateId}`, formData, {
+            await axios.put(`http://localhost:5001/products/${updateId}`, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
-            alert('Product updated successfully');
+            setSnackbar({
+                open: true,
+                message: 'Product updated successfully!',
+                severity: 'success'
+            });
         } catch (error) {
-            console.error('Error updating product:', error);
+            setSnackbar({
+                open: true,
+                message: 'Error updating product',
+                severity: 'error'
+            });
         }
     };
 
-    
     const handleDeleteProduct = async (e) => {
         e.preventDefault();
         try {
-            await axios.delete(`http://localhost:5000/products/${deleteId}`);
-            alert('Product deleted successfully');
+            await axios.delete(`http://localhost:5001/products/${deleteId}`);
+            setSnackbar({
+                open: true,
+                message: 'Product deleted successfully!',
+                severity: 'success'
+            });
         } catch (error) {
-            console.error('Error deleting product:', error);
+            setSnackbar({
+                open: true,
+                message: 'Error deleting product',
+                severity: 'error'
+            });
         }
     };
 
     return (
-        <div className='product-form-container'>
-            {/* Add Product Section */}
-            <div className='product-section'>
-                <h2>Add Product</h2>
-                <form onSubmit={handleAddProduct}>
-                    <input type="text" placeholder="Product Name" value={name} onChange={(e) => setName(e.target.value)} required />
-                    <input type="text" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} required />
-                    <input type="number" placeholder="Price" value={price} onChange={(e) => setPrice(e.target.value)} required />
-                    <input type="text" placeholder="Category" value={category} onChange={(e) => setCategory(e.target.value)} required />
-                    <input type="number" placeholder="Stock" value={stock} onChange={(e) => setStock(e.target.value)} required />
-                    <input type="file" onChange={(e) => setImage(e.target.files[0])} />
-                    <button type="submit">Add Product</button>
-                </form>
-            </div>
-            
-            {/* Update Product Section */}
-            <div className='product-section'>
-                <h2>Update Product</h2>
-                <form onSubmit={handleUpdateProduct}>
-                    <input type="text" placeholder="Product ID" value={updateId} onChange={(e) => setUpdateId(e.target.value)} required />
-                    <button type="button" onClick={fetchProductDetails}>Fetch Product</button>
+        <Container maxWidth="lg">
+            <Grid container spacing={3}>
+                {/* Add Product Section */}
+                <Grid item xs={12} md={6}>
+                    <StyledPaper elevation={3}>
+                        <Typography variant="h5" gutterBottom>
+                            Add New Product
+                        </Typography>
+                        <Box component="form" onSubmit={handleAddProduct} sx={{ mt: 2 }}>
+                            <TextField
+                                fullWidth
+                                label="Product Name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                margin="normal"
+                                required
+                            />
+                            <TextField
+                                fullWidth
+                                label="Description"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                margin="normal"
+                                multiline
+                                rows={3}
+                                required
+                            />
+                            <Grid container spacing={2}>
+                                <Grid item xs={6}>
+                                    <TextField
+                                        fullWidth
+                                        label="Price"
+                                        type="number"
+                                        value={price}
+                                        onChange={(e) => setPrice(e.target.value)}
+                                        margin="normal"
+                                        required
+                                    />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <TextField
+                                        fullWidth
+                                        label="Stock"
+                                        type="number"
+                                        value={stock}
+                                        onChange={(e) => setStock(e.target.value)}
+                                        margin="normal"
+                                        required
+                                    />
+                                </Grid>
+                            </Grid>
+                            <TextField
+                                fullWidth
+                                label="Category"
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
+                                margin="normal"
+                                required
+                            />
+                            <Button
+                                component="label"
+                                variant="outlined"
+                                startIcon={<CloudUploadIcon />}
+                                sx={{ mt: 2, mb: 2 }}
+                            >
+                                Upload Image
+                                <VisuallyHiddenInput 
+                                    type="file" 
+                                    onChange={(e) => setImage(e.target.files[0])}
+                                />
+                            </Button>
+                            <Box sx={{ mt: 2 }}>
+                                <Button
+                                    type="submit"
+                                    variant="contained"
+                                    fullWidth
+                                    size="large"
+                                >
+                                    Add Product
+                                </Button>
+                            </Box>
+                        </Box>
+                    </StyledPaper>
+                </Grid>
 
-                    <input type="text" placeholder="New Product Name" value={updateName} onChange={(e) => setUpdateName(e.target.value)} required />
-                    <input type="text" placeholder="New Description" value={updateDescription} onChange={(e) => setUpdateDescription(e.target.value)} required />
-                    <input type="number" placeholder="New Price" value={updatePrice} onChange={(e) => setUpdatePrice(e.target.value)} required />
-                    <input type="text" placeholder="New Category" value={updateCategory} onChange={(e) => setUpdateCategory(e.target.value)} required />
-                    <input type="number" placeholder="New Stock" value={updateStock} onChange={(e) => setUpdateStock(e.target.value)} required />
-                    <input type="file" onChange={(e) => setUpdateImage(e.target.files[0])} />
-                    <button type="submit">Update Product</button>
-                </form>
-            </div>
-            
-            {/* Delete Product Section */}
-            <div className='product-section'>
-                <h2>Delete Product</h2>
-                <form onSubmit={handleDeleteProduct}>
-                    <input type="text" placeholder="Product ID" value={deleteId} onChange={(e) => setDeleteId(e.target.value)} required />
-                    <button type="submit">Delete Product</button>
-                </form>
-            </div>
-        </div>
+                {/* Update Product Section */}
+                <Grid item xs={12} md={6}>
+                    <StyledPaper elevation={3}>
+                        <Typography variant="h5" gutterBottom>
+                            Update Product
+                        </Typography>
+                        <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
+                            <TextField
+                                fullWidth
+                                label="Product ID"
+                                value={updateId}
+                                onChange={(e) => setUpdateId(e.target.value)}
+                                required
+                            />
+                            <Button
+                                variant="contained"
+                                onClick={fetchProductDetails}
+                                startIcon={<SearchIcon />}
+                            >
+                                Fetch
+                            </Button>
+                        </Box>
+                        <Box component="form" onSubmit={handleUpdateProduct} sx={{ mt: 2 }}>
+                            <TextField
+                                fullWidth
+                                label="New Product Name"
+                                value={updateName}
+                                onChange={(e) => setUpdateName(e.target.value)}
+                                margin="normal"
+                                required
+                            />
+                            <TextField
+                                fullWidth
+                                label="New Description"
+                                value={updateDescription}
+                                onChange={(e) => setUpdateDescription(e.target.value)}
+                                margin="normal"
+                                multiline
+                                rows={3}
+                                required
+                            />
+                            <Grid container spacing={2}>
+                                <Grid item xs={6}>
+                                    <TextField
+                                        fullWidth
+                                        label="New Price"
+                                        type="number"
+                                        value={updatePrice}
+                                        onChange={(e) => setUpdatePrice(e.target.value)}
+                                        margin="normal"
+                                        required
+                                    />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <TextField
+                                        fullWidth
+                                        label="New Stock"
+                                        type="number"
+                                        value={updateStock}
+                                        onChange={(e) => setUpdateStock(e.target.value)}
+                                        margin="normal"
+                                        required
+                                    />
+                                </Grid>
+                            </Grid>
+                            <TextField
+                                fullWidth
+                                label="New Category"
+                                value={updateCategory}
+                                onChange={(e) => setUpdateCategory(e.target.value)}
+                                margin="normal"
+                                required
+                            />
+                            <Button
+                                component="label"
+                                variant="outlined"
+                                startIcon={<CloudUploadIcon />}
+                                sx={{ mt: 2, mb: 2 }}
+                            >
+                                Upload New Image
+                                <VisuallyHiddenInput 
+                                    type="file" 
+                                    onChange={(e) => setUpdateImage(e.target.files[0])}
+                                />
+                            </Button>
+                            <Box sx={{ mt: 2 }}>
+                                <Button
+                                    type="submit"
+                                    variant="contained"
+                                    fullWidth
+                                    size="large"
+                                >
+                                    Update Product
+                                </Button>
+                            </Box>
+                        </Box>
+                    </StyledPaper>
+                </Grid>
+
+                {/* Delete Product Section */}
+                <Grid item xs={12}>
+                    <StyledPaper elevation={3}>
+                        <Typography variant="h5" gutterBottom>
+                            Delete Product
+                        </Typography>
+                        <Box component="form" onSubmit={handleDeleteProduct} sx={{ mt: 2 }}>
+                            <TextField
+                                fullWidth
+                                label="Product ID"
+                                value={deleteId}
+                                onChange={(e) => setDeleteId(e.target.value)}
+                                margin="normal"
+                                required
+                            />
+                            <Box sx={{ mt: 2 }}>
+                                <Button
+                                    type="submit"
+                                    variant="contained"
+                                    fullWidth
+                                    size="large"
+                                    color="error"
+                                >
+                                    Delete Product
+                                </Button>
+                            </Box>
+                        </Box>
+                    </StyledPaper>
+                </Grid>
+            </Grid>
+
+            {/* Snackbar for feedback */}
+            <Snackbar
+                open={snackbar.open}
+                autoHideDuration={6000}
+                onClose={handleSnackbarClose}
+            >
+                <Alert 
+                    onClose={handleSnackbarClose} 
+                    severity={snackbar.severity}
+                    sx={{ width: '100%' }}
+                >
+                    {snackbar.message}
+                </Alert>
+            </Snackbar>
+        </Container>
     );
 };
 
 export default ProductForm;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useState } from 'react';
-// import axios from 'axios';
-// import './productform.css';
-
-// const ProductForm = () => {
-//     // State for adding a product
-//     const [name, setName] = useState('');
-//     const [description, setDescription] = useState('');
-//     const [price, setPrice] = useState('');
-//     const [category, setCategory] = useState('');
-//     const [stock, setStock] = useState('');
-//     const [image, setImage] = useState(null);
-    
-//     // State for updating a product
-//     const [updateId, setUpdateId] = useState('');
-//     const [updateName, setUpdateName] = useState('');
-//     const [updatePrice, setUpdatePrice] = useState('');
-    
-//     // State for deleting a product
-//     const [deleteId, setDeleteId] = useState('');
-
-//     // Handle adding a product
-//     const handleAddProduct = async (e) => {
-//         e.preventDefault();
-//         const formData = new FormData();
-//         formData.append('name', name);
-//         formData.append('description', description);
-//         formData.append('price', price);
-//         formData.append('category', category);
-//         formData.append('stock', stock);
-//         if (image) formData.append('image', image);
-
-//         try {
-//             await axios.post('http://localhost:5000/products', formData, {
-//                 headers: { 'Content-Type': 'multipart/form-data' }
-//             });
-//             alert('Product added successfully');
-//         } catch (error) {
-//             console.error('Error adding product:', error);
-//         }
-//     };
-
-//     // Handle updating a product
-//     const handleUpdateProduct = async (e) => {
-//         e.preventDefault();
-//         try {
-//             await axios.put(`http://localhost:5000/products/${updateId}`, {
-//                 name: updateName,
-//                 price: updatePrice
-//             });
-//             alert('Product updated successfully');
-//         } catch (error) {
-//             console.error('Error updating product:', error);
-//         }
-//     };
-
-
-//     // const handleUpdateProduct = async (e) => {
-//     //     e.preventDefault();
-//     //     try {
-//     //         await axios.put(`http://localhost:5000/products/${updateId}`, {
-//     //             name: name,
-//     //             description: description,
-//     //             price: price,
-//     //             category: category,
-//     //             stock: stock
-//     //         });
-//     //         alert('Product updated successfully');
-//     //     } catch (error) {
-//     //         console.error('Error updating product:', error);
-//     //     }
-//     // };
-    
-
-//     // Handle deleting a product
-//     const handleDeleteProduct = async (e) => {
-//         e.preventDefault();
-//         try {
-//             await axios.delete(`http://localhost:5000/products/${deleteId}`);
-//             alert('Product deleted successfully');
-//         } catch (error) {
-//             console.error('Error deleting product:', error);
-//         }
-//     };
-
-//     return (
-//         <div className='product-form-container'>
-//             {/* Add Product Section */}
-//             <div className='product-section'>
-//                 <h2>Add Product</h2>
-//                 <form onSubmit={handleAddProduct}>
-//                     <input type="text" placeholder="Product Name" value={name} onChange={(e) => setName(e.target.value)} required />
-//                     <input type="text" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} required />
-//                     <input type="number" placeholder="Price" value={price} onChange={(e) => setPrice(e.target.value)} required />
-//                     <input type="text" placeholder="Category" value={category} onChange={(e) => setCategory(e.target.value)} required />
-//                     <input type="number" placeholder="Stock" value={stock} onChange={(e) => setStock(e.target.value)} required />
-//                     <input type="file" onChange={(e) => setImage(e.target.files[0])} />
-//                     <button type="submit">Add Product</button>
-//                 </form>
-//             </div>
-            
-//             {/* Update Product Section */}
-//             <div className='product-section'>
-//                 <h2>Update Product</h2>
-//                 <form onSubmit={handleUpdateProduct}>
-//                     <input type="text" placeholder="Product ID" value={updateId} onChange={(e) => setUpdateId(e.target.value)} required />
-//                     <input type="text" placeholder="New Product Name" value={updateName} onChange={(e) => setUpdateName(e.target.value)} required />
-//                     <input type="number" placeholder="New Price" value={updatePrice} onChange={(e) => setUpdatePrice(e.target.value)} required />
-//                     <button type="submit">Update Product</button>
-//                 </form>
-//             </div>
-            
-//             {/* Delete Product Section */}
-//             <div className='product-section'>
-//                 <h2>Delete Product</h2>
-//                 <form onSubmit={handleDeleteProduct}>
-//                     <input type="text" placeholder="Product ID" value={deleteId} onChange={(e) => setDeleteId(e.target.value)} required />
-//                     <button type="submit">Delete Product</button>
-//                 </form>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default ProductForm;
 
 
 

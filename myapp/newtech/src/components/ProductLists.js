@@ -7,7 +7,7 @@ const ProductLists = () => {
 
     // Fetch products when the component mounts
     useEffect(() => {
-        axios.get('http://localhost:5000/products')
+        axios.get('http://localhost:5001/products')
             .then(response => {
                 setProducts(response.data);
             })

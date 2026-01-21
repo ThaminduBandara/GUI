@@ -71,12 +71,18 @@ import './login-1.css';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSignIn = () => {
-    alert(`Logging in with: ${email}`);
-  };
-
-  const navigate = useNavigate(); 
+    // TODO: Add actual authentication logic here (API call)
+    if (email && password) {
+      alert(`Logging in with: ${email}`);
+      // Navigate to home page after successful login
+      navigate('/');
+    } else {
+      alert('Please enter both email and password');
+    }
+  }; 
 
   const handleSignUp = () => {
     navigate('/SignUp');

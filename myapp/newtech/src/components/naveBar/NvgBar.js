@@ -50,9 +50,9 @@ export default function NvgBar({ bottomRef }) {
         <div className="item-1 dropdown" onClick={toggleDropdown}>CATEGORIES
         {isDropdownOpen && (
               <ul className="dropdown-menu">
-                <li onClick={() => handleNavigation('Laptops')}>Laptops</li>
-                <li onClick={() => handleNavigation('Cameras')}>Cameras</li>
-                <li onClick={() => handleNavigation('Smartphones')}>Smartphones</li>
+                <li onClick={(e) => { e.stopPropagation(); setIsDropdownOpen(false); handleNavigation('Laptops'); }}>Laptops</li>
+                <li onClick={(e) => { e.stopPropagation(); setIsDropdownOpen(false); handleNavigation('Cameras'); }}>Cameras</li>
+                <li onClick={(e) => { e.stopPropagation(); setIsDropdownOpen(false); handleNavigation('Smartphones'); }}>Smartphones</li>
               </ul>
             )}
 
@@ -86,10 +86,10 @@ export default function NvgBar({ bottomRef }) {
 
           {isDropdownOpen2 && (
               <ul className="dropdown-menu2">
-                <Link to="/ProductForm" className='add-item'>
+                <Link to="/ProductForm" className='add-item' onClick={(e) => { e.stopPropagation(); setIsDropdownOpen2(false); }}>
                 <li>Add Items</li>
                 </Link>
-                <Link to="/ProductLists" className='add-item'>
+                <Link to="/ProductLists" className='add-item' onClick={(e) => { e.stopPropagation(); setIsDropdownOpen2(false); }}>
                 <li>Product List</li>
                 </Link>
                 

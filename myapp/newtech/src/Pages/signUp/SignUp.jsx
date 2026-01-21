@@ -68,17 +68,57 @@ export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password === confirmPassword) {
-      alert('Sign Up Successful!');
-    } else {
-      alert('Passwords do not match!');
+    
+    // Validate all fields are filled
+    if (!fullName.trim()) {
+      alert('Please enter your full name');
+      return;
     }
-  };
-
-  const navigate = useNavigate(); 
+    
+    if (!email.trim()) {
+      alert('Please enter your email');
+      return;
+    }
+    
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert('Please enter a valid email address');
+      return;
+    }
+    
+    if (!password) {
+      alert('Please enter a password');
+      return;
+    }
+    
+    if (password.length < 6) {
+      alert('Password must be at least 6 characters long');
+      return;
+    }
+    
+    if (!confirmPassword) {
+      alert('Please confirm your password');
+      return;
+    }
+    
+    if (password !== confirmPassword) {
+      alert('Passwords do not match!');
+      return;
+    }
+    
+    // TODO: Add actual API call to register user
+    alert('Sign Up Successful! Redirecting to login...');
+    
+    // Navigate to login page after successful signup
+    setTimeout(() => {
+      navigate('/Login');
+    }, 1000);
+  }; 
 
   const handleLoginRedirect = () => {
     navigate('/Login');

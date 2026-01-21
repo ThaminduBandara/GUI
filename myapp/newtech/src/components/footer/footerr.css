@@ -1,144 +1,87 @@
 
 
 .full-1{
-
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 260px;
     width: 100%;
-    z-index: 1000;
-    
-
+    z-index: 1;
 }
 
-
-
 .footerr{
-
     background-color: rgb(25, 9, 82);
-    height: 85%;
     display: flex;
     width: 100%;
-    /* justify-content: center; */
-    align-items: center;
+    padding: 40px 20px;
+    justify-content: space-around;
+    align-items: flex-start;
     flex-direction: row;
+    gap: 30px;
 }
 
 .first-para{
-    /* background-color: salmon; */
     display: flex;
-    align-items: center;
     flex-direction: column;
-    width: 25%;
-    height: 100%;
-
+    flex: 1;
+    max-width: 350px;
 }
 
 .about{
-    /* background-color: red; */
-    display: flex;
-    justify-content: start;
-    align-items: center;
     font-size: 20px;
     font-weight: bold;
-    /* font-family: 'Times New Roman', Times, serif; */
-    color:  yellow;
-    width: 90%;
-    height: 20%;
-
+    color: yellow;
+    margin-bottom: 15px;
 }
 
 .about-para{
-    /* background-color: beige; */
     font-size: 15px;
-    /* font-weight: bold; */
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
     color: rgb(207, 221, 241);
-    display: flex;
-    justify-content: start;
-    align-items: start;
-    width: 90%;
-    height: 80%;
-   
-
-
+    line-height: 1.6;
 }
-
 
 .second-para{
-    /* background-color: aqua; */
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50%;
-    height: 100%;
-
-
+    flex: 1;
+    max-width: 300px;
 }
-
 
 .copyRight-para{
-
-    /* background-color: blue; */
     font-size: 15px;
-    /* font-weight: bold; */
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color:rgb(207, 221, 241);
-    width: 90%;
-    height: 75%;
-
+    text-align: center;
+    line-height: 1.6;
 }
-
 
 .third-para{
-    /* background-color: chartreuse; */
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    width: 25%;
-    height: 100%;
-
+    flex: 1;
+    max-width: 350px;
 }
 
-
 .contact{
-    /* background-color: red; */
-    display: flex;
-    justify-content: start;
-    align-items: center;
     font-size: 20px;
     font-weight: bold;
-    
-    color:  yellow;
-    width: 90%;
-    height: 20%;
+    color: yellow;
+    margin-bottom: 15px;
 }
 
 .contact-para{
-
-    /* background-color: beige; */
-   
-    /* font-weight: bold; */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: rgb(207, 221, 241);
-    display: flex;
-    justify-content: start;
-    align-items: start;
-    width: 90%;
-    height: 80%;
     font-size: 15px;
-
+    line-height: 1.8;
 }
 
 .last-bottom{
-
-    border-top: solid;
-    border-width: 1px;
-    border-color: rgb(119, 140, 171);
+    border-top: 1px solid rgb(119, 140, 171);
     background-color: rgb(25, 9, 82);
     width: 100%;
-    height: 15%;
+    padding: 15px 20px;
+    text-align: center;
+    color: rgb(207, 221, 241);
+    font-size: 14px;
 }

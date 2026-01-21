@@ -8,6 +8,7 @@
     align-items: center;
     position: sticky;
     top: 0;
+    z-index: 9999;
       
      
 }
@@ -47,6 +48,7 @@
 .item-1{
     /* border: 1px solid black; */
     /* position: absolute; */
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,6 +57,7 @@
     height: 50px;
     font-size: 14px;
     color: rgb(207, 221, 241);
+    z-index: 10000;
     
    
 }

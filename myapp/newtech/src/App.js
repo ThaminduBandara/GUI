@@ -26,8 +26,7 @@ function App() {
     <NvgBar  bottomRef={bottomRef}/>
   </div>
      
-      
-
+      <div className='routes-container'>
       <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/Login" element={<Login/>} />
@@ -37,7 +36,7 @@ function App() {
           <Route path="/ProductLists" element={<ProductList/>} />
 
         </Routes>
-     
+      </div>
      
      
      

@@ -10,7 +10,7 @@ export default function Footerr() {
             <div className='about'>ABOUT US</div>
 
             <div className='about-para'>
-            newtech.lk offered a wide range <br/>of high quality services in the  development,delivery, and<br/> maintenance of softwares.
+            newtech.lk offers a wide range of high quality services in the development, delivery, and maintenance of software and electronic products.
             </div>
 
         </div>
@@ -18,7 +18,7 @@ export default function Footerr() {
         <div className='second-para'>
 
             <div className='copyRight-para'>
-            Copyrights © 2022 <br/>newtech.lk All Rights<br/> Reserved
+            Copyrights © 2024-2026<br/>newtech.lk<br/>All Rights Reserved
             </div>
 
         </div>
@@ -28,13 +28,13 @@ export default function Footerr() {
             <div className='contact'>CONTACT</div>
 
             <div className='contact-para'>
-                Address: Havelock Town,Colombo 5,<br/>Sri Lanka.<br/>
+                Address: Havelock Town, Colombo 5, Sri Lanka<br/><br/>
 
-                Email: newtechonline@gmail.com<br/>
+                Email: newtechonline@gmail.com<br/><br/>
 
-                Tell: +94 123 456 789<br/>
+                Tel: +94 123 456 789<br/>
 
-                Tell: +94 112 356 356<br/>
+                Tel: +94 112 356 356
             </div>
 
 
@@ -42,7 +42,7 @@ export default function Footerr() {
       
     </div>
     <div className='last-bottom'>
-
+        Designed and Developed by New Tech Team
     </div>
 
     </div>
