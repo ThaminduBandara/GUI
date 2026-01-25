@@ -74,13 +74,21 @@ export default function Login() {
   const navigate = useNavigate();
 
   const handleSignIn = () => {
-    // TODO: Add actual authentication logic here (API call)
-    if (email && password) {
-      alert(`Logging in with: ${email}`);
-      // Navigate to home page after successful login
-      navigate('/');
+    // Hardcoded credentials check
+    if (!email || !password) {
+      alert('Please enter both username and password');
+      return;
+    }
+
+    const isValid = email === 'thamindu' && password === 'thamindu123';
+
+    if (isValid) {
+      // Persist simple auth flag
+      localStorage.setItem('isAuthenticated', 'true');
+      // Navigate to home after successful login
+      navigate('/home');
     } else {
-      alert('Please enter both email and password');
+      alert('Invalid credentials. Try username: thamindu, password: thamindu123');
     }
   }; 
 

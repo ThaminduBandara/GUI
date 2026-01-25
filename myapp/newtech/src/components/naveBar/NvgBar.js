@@ -41,9 +41,9 @@ export default function NvgBar({ bottomRef }) {
   return (
     <div className="nvgBar">
       <div className="left">
-        <div className="name-1" onClick={() => handleNavigation('HOME')}>NEW TECH</div>
+        <Link className="name-1" to="/home">NEW TECH</Link>
         
-        <Link className="item-1" to="/" >
+        <Link className="item-1" to="/home" >
         <div  onClick={() => handleNavigation('HOME')}>HOME</div>
         </Link>
           

@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import ProductList from './components/ProductLists';
 import ProductForm from './components/ProductForm';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import './App.css';
 import NvgBar from './components/naveBar/NvgBar';
 import Footerr from './components/footer/Footerr'
@@ -28,12 +28,22 @@ function App() {
      
       <div className='routes-container'>
       <Routes>
-          <Route path="/" element={<Home/>} />
+          <Route path="/" element={<Navigate to="/Login" replace />} />
           <Route path="/Login" element={<Login/>} />
           <Route path="/SignUp" element={<SignUp/>} />
-          <Route path="/singleProduct" element={<SingleProduct />} />
-          <Route path="/ProductForm" element={<ProductForm/>} />
-          <Route path="/ProductLists" element={<ProductList/>} />
+          {/* Protected routes */}
+          <Route path="/home" element={
+            localStorage.getItem('isAuthenticated') === 'true' ? <Home/> : <Navigate to="/Login" replace />
+          } />
+          <Route path="/singleProduct" element={
+            localStorage.getItem('isAuthenticated') === 'true' ? <SingleProduct/> : <Navigate to="/Login" replace />
+          } />
+          <Route path="/ProductForm" element={
+            localStorage.getItem('isAuthenticated') === 'true' ? <ProductForm/> : <Navigate to="/Login" replace />
+          } />
+          <Route path="/ProductLists" element={
+            localStorage.getItem('isAuthenticated') === 'true' ? <ProductList/> : <Navigate to="/Login" replace />
+          } />
 
         </Routes>
       </div>
