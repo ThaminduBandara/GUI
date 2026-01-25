@@ -2,12 +2,13 @@
 
 import React, { useState } from 'react';
 import './navnew.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-export default function NvgBar({ bottomRef }) {
+export default function NvgBar({ bottomRef, isAuthenticated, onLogout }) {
   const [searchText, setSearchText] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDropdownOpen2, setIsDropdownOpen2] = useState(false);
+  const navigate = useNavigate();
 
 
   const handleSearchChange = (e) => {
@@ -18,16 +19,18 @@ export default function NvgBar({ bottomRef }) {
 
   const handleNavigation = (page) => {};
 
+  const handleScrollToBottom = () => {
+    if (bottomRef.current) {
+      bottomRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
-
-  
-    const handleScrollToBottom = () => {
-      if (bottomRef.current) {
-        bottomRef.current.scrollIntoView({ behavior: "smooth" });
-      }
-    };
- 
-
+  const handleLogout = () => {
+    if (onLogout) {
+      onLogout();
+    }
+    navigate('/Login', { replace: true });
+  };
 
 
   const toggleDropdown = () => {
@@ -41,11 +44,13 @@ export default function NvgBar({ bottomRef }) {
   return (
     <div className="nvgBar">
       <div className="left">
-        <Link className="name-1" to="/home">NEW TECH</Link>
+        <Link className="name-1" to={isAuthenticated ? "/home" : "/Login"}>NEW TECH</Link>
         
-        <Link className="item-1" to="/home" >
-        <div  onClick={() => handleNavigation('HOME')}>HOME</div>
-        </Link>
+        {isAuthenticated && (
+          <Link className="item-1" to="/home" >
+          <div  onClick={() => handleNavigation('HOME')}>HOME</div>
+          </Link>
+        )}
           
         <div className="item-1 dropdown" onClick={toggleDropdown}>CATEGORIES
         {isDropdownOpen && (
@@ -63,6 +68,7 @@ export default function NvgBar({ bottomRef }) {
         </Link>
        
         <div className="item-1" onClick={handleScrollToBottom}>CONTACT US</div>
+
       </div>
 
       <div className="right">
@@ -101,7 +107,11 @@ export default function NvgBar({ bottomRef }) {
 
           </div>
           
-          <Link className="item-2" to="/Login" ><div  onClick={() => handleNavigation('LOG IN')}>LOGIN</div></Link>
+          {isAuthenticated ? (
+            <button className="item-2 logout-btn" onClick={handleLogout}>LOGOUT</button>
+          ) : (
+            <Link className="item-2" to="/Login" ><div  onClick={() => handleNavigation('LOG IN')}>LOGIN</div></Link>
+          )}
           
         </div>
       </div>
