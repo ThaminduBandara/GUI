@@ -8,16 +8,15 @@ import {
     Paper,
     Grid,
     Container,
-    IconButton,
     Alert,
     Snackbar
 } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/material/styles';
-//import './productform.css';
 
-// Styled components
+
+
 const VisuallyHiddenInput = styled('input')`
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
@@ -175,9 +174,10 @@ const ProductForm = () => {
     };
 
     return (
+
+        // add product
         <Container maxWidth="lg">
             <Grid container spacing={3}>
-                {/* Add Product Section */}
                 <Grid item xs={12} md={6}>
                     <StyledPaper elevation={3}>
                         <Typography variant="h5" gutterBottom>
@@ -260,7 +260,7 @@ const ProductForm = () => {
                     </StyledPaper>
                 </Grid>
 
-                {/* Update Product Section */}
+      {/* update product         */}
                 <Grid item xs={12} md={6}>
                     <StyledPaper elevation={3}>
                         <Typography variant="h5" gutterBottom>
@@ -359,7 +359,7 @@ const ProductForm = () => {
                     </StyledPaper>
                 </Grid>
 
-                {/* Delete Product Section */}
+{/* delete product */}
                 <Grid item xs={12}>
                     <StyledPaper elevation={3}>
                         <Typography variant="h5" gutterBottom>
@@ -390,7 +390,7 @@ const ProductForm = () => {
                 </Grid>
             </Grid>
 
-            {/* Snackbar for feedback */}
+        
             <Snackbar
                 open={snackbar.open}
                 autoHideDuration={6000}
